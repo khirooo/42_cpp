@@ -2,6 +2,7 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+#include <limits.h>
 
 void	addContact(PhoneBook *repertoire)
 {
@@ -126,7 +127,12 @@ int	main()
 	while (1)
 	{
 		std::cout << "enter a command: ";
-		std::getline(std::cin, command);
+		if (!std::getline(std::cin, command))
+		{
+			std::cout << "error: ahh ya bo zeb" << std::endl;
+			//std::cin.ignore(INT_MAX); || clearerr(stdin);
+			continue;
+		}
 		if (command == "ADD")
 			addContact(&repertoire);
 		else if(command == "SEARCH")
