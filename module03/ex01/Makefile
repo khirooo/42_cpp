@@ -1,11 +1,11 @@
-NAME	=	zombie
+NAME	=	fire
 
 CC		=	g++
 INCLUDES	=	includes
-FLAGS	=	-Wall -Wextra -Werror  -I $(INCLUDES)
+FLAGS	=	-Wall -Wextra -Werror -std=c++98 -I $(INCLUDES)
 
 SRCDIR	=	./
-SRCFILES = 	Zombie.cpp newZombie.cpp randomChump.cpp main.cpp
+SRCFILES = 	ScavTrap.cpp ClapTrap.cpp main.cpp
 SRCS	=	$(addprefix $(SRCDIR), $(SRCFILES))
 
 OBJS	=	$(SRCS:%.cpp=%.o)
