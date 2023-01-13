@@ -1,11 +1,11 @@
-NAME	=	zoo
+NAME	=	intern
 
 CC		=	g++
 INCLUDES	=	includes
-FLAGS	=	-Wall -Wextra -Werror -std=c++98 -I $(INCLUDES)
+FLAGS	=	 -std=c++98 -I $(INCLUDES)
 
 SRCDIR	=	src/
-SRCFILES = 	Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+SRCFILES = 	Intern.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp AForm.cpp Bureaucrat.cpp
 SRCS	=	$(addprefix $(SRCDIR), $(SRCFILES))
 SRCS	+= main.cpp
 

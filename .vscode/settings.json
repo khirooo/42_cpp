@@ -34,6 +34,11 @@
 		"type_traits": "cpp",
 		"typeinfo": "cpp",
 		"utility": "cpp",
-		"cstring": "cpp"
+		"cstring": "cpp",
+		"bit": "cpp",
+		"unordered_map": "cpp",
+		"vector": "cpp",
+		"functional": "cpp",
+		"numeric": "cpp"
 	}
 }
