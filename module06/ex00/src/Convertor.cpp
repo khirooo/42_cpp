@@ -1,6 +1,19 @@
 #include "Convertor.hpp"
 #include "stdlib.h"
 
+#include <sstream>
+
+namespace patch
+{
+    template < typename T > std::string to_string( const T& n )
+    {
+        std::ostringstream stm ;
+        stm << n ;
+        return stm.str() ;
+    }
+}
+
+
 Convertor::Convertor(std::string const & representation)
 :
 _representation(representation)
@@ -64,58 +77,76 @@ void	Convertor::isValid(void) const
 void	Convertor::getCharValue(void)
 {
 	std::cout << "Actual Type: CHAR" << std::endl;
-	_values[0] = std::to_string(_representation[0]);
+	_values[0] = patch::to_string(_representation[0]);
 	_values[1] = "Impossible";
 	_values[2] = "Impossible";
 	_values[3] = "Impossible";
+}
+
+std::string	trim_float(std::string n)
+{
+	std::string ret("");
+	bool	found_digit = false;
+
+	std::cout << n << std::endl;
+	for (int i = n.length() - 1; i >= 0; i--)
+	{
+		if (n[i] != '0')
+			found_digit = true;
+		if (found_digit)
+			ret.insert(0, 1, n[i]);
+	}
+	if (ret[ret.length() - 1] == '.')
+		ret.append(1, '0');
+	return ret;
 }
 
 void		Convertor::getIntValue(void)
 {
 	std::cout << "Actual Type: INT" << std::endl;
 	_int_value = atoi(_representation.c_str());
-	_values[1] = std::to_string(_int_value);
+	_values[1] = patch::to_string(_int_value);
 	_char_value = static_cast<char>(_int_value);
 	if (std::isprint(_char_value))
 		_values[0] = std::string(1, _char_value);
 	else
 		_values[0] = "Non displayable";
 	_float_value = static_cast<float>(_int_value);
-	_values[2] = std::to_string(_float_value);
+	_values[2] = trim_float(patch::to_string(_float_value));
 	_double_value = static_cast<double>(_int_value);
-	_values[3] = std::to_string(_double_value);
+	_values[3] = patch::to_string(_double_value);
 }
 
 void	Convertor::getFloatValue(void) 
 {
 	std::cout << "Actual Type: FLOAT" << std::endl;
 	_float_value = atoi(_representation.c_str());
-	_values[2] = std::to_string(_float_value);
+	_values[2] = patch::to_string(_float_value);
 	_char_value = static_cast<char>(_float_value);
 	if (std::isprint(_char_value))
 		_values[0] = std::string(1, _char_value);
 	else
 		_values[0] = "Non displayable";
 	_int_value = static_cast<int>(_float_value);
-	_values[1] = std::to_string(_int_value);
+	_values[1] = patch::to_string(_int_value);
 	_double_value = static_cast<double>(_float_value);
-	_values[3] = std::to_string(_double_value);
+	_values[3] = patch::to_string(_double_value);
 }
 
 void	Convertor::getDoubleValue(void) 
 {
 	std::cout << "Actual Type: DOUBLE" << std::endl;
 	_double_value = atoi(_representation.c_str());
-	_values[3] = std::to_string(_double_value);
+	_values[3] = patch::to_string(_double_value);
 	_char_value = static_cast<char>(_double_value);
 	if (std::isprint(_char_value))
 		_values[0] = std::string(1, _char_value);
 	else
 		_values[0] = "Non displayable";
 	_int_value = static_cast<int>(_double_value);
-	_values[1] = std::to_string(_int_value);
+	_values[1] = patch::to_string(_int_value);
 	_float_value = static_cast<float>(_double_value);
-	_values[2] = std::to_string(_float_value);
+	_values[2] = patch::to_string(_float_value);
 }
 
 void	Convertor::check_overflow(void) const
@@ -125,7 +156,7 @@ void	Convertor::check_overflow(void) const
 		std::string	s_value = std::string(_representation);
 		if (_representation[0] == '+')
 			s_value = std::string(_representation.substr(1));
-		if (s_value != std::to_string(_int_value))
+		if (s_value != patch::to_string(_int_value))
 			throw InvalidInput2();
 	}
 	else if (_type == Float)
@@ -135,7 +166,7 @@ void	Convertor::check_overflow(void) const
 			s_value = std::string(_representation.substr(1));
 		else
 			s_value = std::string(_representation.substr(0, _representation.length() - 2));
-		if (s_value != std::to_string(_float_value))
+		if (s_value != patch::to_string(_float_value))
 			throw InvalidInput2();
 	}
 	else if (_type == Float)
@@ -143,7 +174,7 @@ void	Convertor::check_overflow(void) const
 		std::string	s_value = std::string(_representation);
 		if (_representation[0] == '+')
 			s_value = std::string(_representation.substr(1, _representation.length()));
-		if (s_value != std::to_string(_float_value))
+		if (s_value != patch::to_string(_float_value))
 			throw InvalidInput2();
 	}
 }
