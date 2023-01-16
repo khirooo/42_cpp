@@ -38,7 +38,7 @@ public:
 	{
 		const char * what() const throw()
 		{
-			return "Invalid input impossible to convert to any type!";
+			return "Invalid input: impossible to convert to any type!";
 		}
 	};
 
@@ -46,7 +46,7 @@ public:
 	{
 		const char * what() const throw()
 		{
-			return "Invalid input overflow when converting!";
+			return "Invalid input: overflow when converting to original type!";
 		}
 	};
 };

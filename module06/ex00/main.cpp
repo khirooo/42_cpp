@@ -11,7 +11,7 @@ int	main(int argc, char* argv[])
 	{
 		Convertor convertor(argv[1]);
 		convertor.print_values();
-//		convertor.getIntValue();
+		system("leaks convert");
 	}
 	catch(const std::exception& e)
 	{
