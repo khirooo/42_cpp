@@ -52,7 +52,7 @@ void	identify(Base& p)
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "it wasn't an A type" << '\n';
+		std::cout << "it wasn't a A type" << '\n';
 	}
 	try
 	{
@@ -62,7 +62,7 @@ void	identify(Base& p)
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "it wasn't an B type" << '\n';
+		std::cout << "it wasn't a B type" << '\n';
 	}
 	try
 	{
@@ -72,13 +72,14 @@ void	identify(Base& p)
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "it wasn't an C type" << '\n';
+		std::cout << "it wasn't a C type" << '\n';
 	}
 }
 
 int main(void)
 {
 	Base* b = generate();
+	identify(b);
 	identify(*b);
 	delete (b);
 	return 0;

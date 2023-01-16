@@ -2,7 +2,7 @@ NAME	=	detect
 
 CC		=	g++
 INCLUDES	=	./
-FLAGS	=	 -std=c++98 -I $(INCLUDES)
+FLAGS	=	 -Wall -Werror -Wextra -std=c++98 -I $(INCLUDES)
 
 SRCDIR	=	./
 SRCFILES = 	
