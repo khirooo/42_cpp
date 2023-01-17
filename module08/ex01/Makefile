@@ -1,11 +1,11 @@
-NAME	=	array
+NAME	=	easyfind
 
 CC		=	c++
 INCLUDES	=	./
-FLAGS	=	 -std=c++98 -I $(INCLUDES)
+FLAGS	=	 -Wall -Wextra -Werror -std=c++98 -I $(INCLUDES)
 
 SRCDIR	=	./
-SRCFILES = 	
+SRCFILES = 	Span.cpp
 SRCS	=	$(addprefix $(SRCDIR), $(SRCFILES))
 SRCS	+= main.cpp
 
