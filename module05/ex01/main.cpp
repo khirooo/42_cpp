@@ -4,7 +4,7 @@ int	main(void)
 {
 	try
 	{
-		Bureaucrat*	b = new Bureaucrat("john", 16);
+		Bureaucrat*	b = new Bureaucrat("john", 15);
 		Form* form = new Form("testing", false, 15, 150);
 
 		std::cout << std::endl;
@@ -12,6 +12,8 @@ int	main(void)
 		std::cout << *form << std::endl;
 		form->beSigned(*b);
 		std::cout << *form << std::endl;
+		b->levelDown();
+		b->signForm(*form);
 		std::cout << std::endl;
 
 		delete(b);

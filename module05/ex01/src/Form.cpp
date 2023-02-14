@@ -70,12 +70,12 @@ bool	Form::getStat(void)
 	return _signed;
 }
 
-const unsigned int	Form::getSignGrade(void)
+unsigned int	Form::getSignGrade(void)
 {
 	return _signGrade;
 }
 
-const unsigned int 	Form::getExecGrade(void)
+unsigned int 	Form::getExecGrade(void)
 {
 	return _execGrade;
 }
@@ -86,9 +86,9 @@ std::ostream&	operator<<(std::ostream& stream, Form& form)
 	return stream;
 }
 
-void	Form::beSigned(Bureaucrat& b)
+void	Form::beSigned(Bureaucrat const & b)
 {
-	unsigned int grade = b.getGrade();
+	unsigned int grade = b.getGrade(); //no need for this test
 	if (grade < 1)
 		throw GradeTooHighException();
 	if (grade > 150)
@@ -99,5 +99,16 @@ void	Form::beSigned(Bureaucrat& b)
 		std::cout << b.getName() << "  signed " << _name << "." << std::endl;
 	}
 	else
-		std::cout << b.getName() << " couldn't sign " << _name << " because his grade is to low (grade = " << b.getGrade() << ")" << std::endl;
+		throw GradeTooLowException();
 }
+
+const char* Form::GradeTooHighException::what() const throw()
+{
+	return "Grade too high";
+}
+
+const char* Form::GradeTooLowException::what() const throw()
+{
+	return "Grade too low";
+}
+
