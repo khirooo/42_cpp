@@ -1,4 +1,12 @@
-#include "Convertor.hpp"
+#include "ScalarConverter.hpp"
+
+std::string ScalarConverter::_representation;
+type		ScalarConverter::_type;
+std::string	ScalarConverter::_values[4];
+int			ScalarConverter::_int_value;
+char		ScalarConverter::_char_value;
+float		ScalarConverter::_float_value;
+double		ScalarConverter::_double_value;
 
 int	main(int argc, char* argv[])
 {
@@ -9,13 +17,12 @@ int	main(int argc, char* argv[])
 	}
 	try
 	{
-		Convertor convertor(argv[1]);
-		convertor.print_values();
-		system("leaks convert");
+		ScalarConverter::convert(argv[1]);
+		//system("leaks convert");
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what() << std::endl;
 	}
 	return 0;
 }

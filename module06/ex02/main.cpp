@@ -1,6 +1,4 @@
-#include "A.hpp"
-#include "B.hpp"
-#include "C.hpp"
+#include "ABC.hpp"
 #include <iostream>
 #include <time.h>
 
@@ -35,11 +33,11 @@ void	identify(Base* p)
 	C* c = dynamic_cast<C*>(p);
 
 	if (a)
-		std::cout << "type A detected" << std::endl;
+		std::cout << "1-type A detected" << std::endl;
 	if (b)
-		std::cout << "type B detected" << std::endl;
+		std::cout << "1-type B detected" << std::endl;
 	if (c)
-		std::cout << "type C detected" << std::endl;
+		std::cout << "1-type C detected" << std::endl;
 }
 
 void	identify(Base& p)
@@ -48,7 +46,7 @@ void	identify(Base& p)
 	{
 		A a = dynamic_cast<A&>(p);
 		(void)a;
-		std::cout << "type A detected" << std::endl;
+		std::cout << "2-type A detected" << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -58,7 +56,7 @@ void	identify(Base& p)
 	{
 		B a = dynamic_cast<B&>(p);
 		(void)a;
-		std::cout << "type B detected" << std::endl;
+		std::cout << "2-type B detected" << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -68,7 +66,7 @@ void	identify(Base& p)
 	{
 		C a = dynamic_cast<C&>(p);
 		(void)a;
-		std::cout << "type C detected" << std::endl;
+		std::cout << "2-type C detected" << std::endl;
 	}
 	catch(const std::exception& e)
 	{

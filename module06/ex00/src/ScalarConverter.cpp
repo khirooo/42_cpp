@@ -1,33 +1,30 @@
-#include "Convertor.hpp"
-#include "stdlib.h"
-
+#include "ScalarConverter.hpp"
+#include <stdlib.h>
 #include <float.h>
 #include <sstream>
 
 
-Convertor::Convertor(std::string const & representation)
-:
-_representation(representation)
+ScalarConverter::ScalarConverter()
 {
-	std::cout << "Convertor Default constructor called." << std::endl;
-	isValid();
+	std::cout << "ScalarConverter Default constructor called." << std::endl;
 }
 
-Convertor::Convertor(Convertor& copy)
+ScalarConverter::ScalarConverter(ScalarConverter& copy)
 {
 	(void)copy;
-	std::cout << "Convertor copy constructor called." << std::endl;
+	std::cout << "ScalarConverter copy constructor called." << std::endl;
 }
 
-Convertor&	Convertor::operator=(Convertor& copy)
+ScalarConverter&	ScalarConverter::operator=(ScalarConverter& copy)
 {
-	std::cout << "Convertor copy assign constructor called." << std::endl;
+	(void)copy;
+	std::cout << "ScalarConverter copy assign constructor called." << std::endl;
 	return *this;
 }
 
-Convertor::~Convertor()
+ScalarConverter::~ScalarConverter()
 {
-	std::cout << "Convertor destructor called." << std::endl;
+	std::cout << "ScalarConverter destructor called." << std::endl;
 }
 
 bool	is_number(std::string s)
@@ -35,7 +32,7 @@ bool	is_number(std::string s)
 	bool	found_point = false;
 	bool	found_f		=	false;
 
-	int	i = 0;
+	unsigned long	i = 0;
 	if (s[i] == '-' || s[i] == '+')
 		i++;
 	if (!std::isdigit(s[i]))
@@ -53,7 +50,7 @@ bool	is_number(std::string s)
 	return (true);
 }
 
-void	Convertor::isValid(void) const
+void	ScalarConverter::isValid(void)
 {
 	if (_representation.empty())
 		throw InvalidInput1();
@@ -65,10 +62,10 @@ void	Convertor::isValid(void) const
 }
 
 
-void	Convertor::getCharValue(void)
+void	ScalarConverter::getCharValue(void)
 {
 	std::cout << "Actual Type: CHAR" << std::endl;
-	_values[0] = std::to_string(_representation[0]);
+	_values[0] = std::string(1, _representation[0]);
 	_values[1] = "Impossible";
 	_values[2] = "Impossible";
 	_values[3] = "Impossible";
@@ -93,7 +90,7 @@ std::string	trim_float(std::string n)
 	return ret;
 }
 
-void		Convertor::getIntValue(void)
+void		ScalarConverter::getIntValue(void)
 {
 	std::cout << "Actual Type: INT" << std::endl;
 	_int_value = atoi(_representation.c_str());
@@ -113,7 +110,7 @@ void		Convertor::getIntValue(void)
 	_values[3] =float_stream.str().append(".0");
 }
 
-void	Convertor::getFloatValue(void) 
+void	ScalarConverter::getFloatValue(void) 
 {
 	std::stringstream	float_stream;
 	std::cout << "Actual Type: FLOAT" << std::endl;
@@ -145,7 +142,7 @@ void	Convertor::getFloatValue(void)
 	_values[3] = float_stream.str();
 }
 
-void	Convertor::getDoubleValue(void) 
+void	ScalarConverter::getDoubleValue(void) 
 {
 	std::stringstream	float_stream;
 	std::cout << "Actual Type: DOUBLE" << std::endl;
@@ -182,7 +179,7 @@ void	Convertor::getDoubleValue(void)
 	}
 }
 
-void	Convertor::check_overflow(void) const
+void	ScalarConverter::check_overflow(void)
 {
 	if (_type == Int)
 	{
@@ -210,11 +207,11 @@ void	Convertor::check_overflow(void) const
 	}
 }
 
-void	Convertor::detect_convert(void)
+void	ScalarConverter::detect_convert(void)
 {
 	if (_representation.length() == 1 && !std::isdigit(_representation[0]))
 		_type = Char;
-	int	i = 0;
+	unsigned long	i = 0;
 	for (i = 0; i < _representation.length(); i++)
 	{
 		if (i == 0 && (_representation[i] == '+' || _representation[0] == '-'))
@@ -251,11 +248,23 @@ void	Convertor::detect_convert(void)
 	check_overflow();
 }
 
-void	Convertor::print_values(void)
+void	ScalarConverter::convert(std::string representation)
 {
+	_representation = representation;
+	isValid();
 	detect_convert();
 	std::cout << "char: " << _values[0] << std::endl;
 	std::cout << "int: " << _values[1] << std::endl;
 	std::cout << "float: " << _values[2] << std::endl;
 	std::cout << "double: " << _values[3] << std::endl;
+}
+
+const char*	ScalarConverter::InvalidInput1::what() const throw()
+{
+	return "Invalid input: overflow when converting to original type!";
+}
+
+const char*	ScalarConverter::InvalidInput2::what() const throw()
+{
+	return "Invalid input: overflow when converting to original type!";
 }

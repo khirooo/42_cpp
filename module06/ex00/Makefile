@@ -1,11 +1,11 @@
 NAME	=	convert
 
-CC		=	g++
+CC		=	c++
 INCLUDES	=	includes
-FLAGS	=	 -std=c++98 -I $(INCLUDES)
+FLAGS	=	-Wall -Wextra -Werror -std=c++98 -I $(INCLUDES)
 
 SRCDIR	=	src/
-SRCFILES = 	Convertor.cpp
+SRCFILES = 	ScalarConverter.cpp
 SRCS	=	$(addprefix $(SRCDIR), $(SRCFILES))
 SRCS	+= main.cpp
 

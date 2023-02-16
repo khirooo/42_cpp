@@ -3,14 +3,12 @@
 
 class Base
 {
-private:
-	/* data */
 public:
-	Base(/* args */);
+	Base();
 	virtual ~Base();
 };
 
-Base::Base(/* args */)
+Base::Base()
 {
 }
 

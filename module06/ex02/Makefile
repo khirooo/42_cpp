@@ -1,6 +1,6 @@
 NAME	=	detect
 
-CC		=	g++
+CC		=	c++
 INCLUDES	=	./
 FLAGS	=	 -Wall -Werror -Wextra -std=c++98 -I $(INCLUDES)
 
