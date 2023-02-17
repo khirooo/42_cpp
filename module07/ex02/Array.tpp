@@ -20,8 +20,8 @@ template <typename T>
 Array<T>::Array(Array<T>& copy)
 {
 	std::cout << "Array copy costructor called" << std::endl;
-	_array = new T[copy.size()];
 	_size = copy.size();
+	_array = new T[_size];
 	for (unsigned int i = 0; i < _size; i++)
 		_array[i] = T(copy.getArray()[i]);
 }
@@ -29,10 +29,10 @@ Array<T>::Array(Array<T>& copy)
 template <typename T>
 Array<T>&	Array<T>::operator=(Array<T>& copy)
 {
-	std::cout << "Array copy assign costructor called" << std::endl;
+	std::cout << "Array copy assign operator called" << std::endl;
 	delete[] _array;
-	_array = new T[copy.size()];
 	_size = copy.size();
+	_array = new T[_size];
 	for (unsigned int i = 0; i < _size; i++)
 		_array[i] = T(copy.getArray()[i]);
 	return (*this);
@@ -42,6 +42,7 @@ template <typename T>
 Array<T>::~Array()
 {
 	std::cout << "Array destructor called" << std::endl;
+	delete[] _array;
 }
 
 template <typename T>
