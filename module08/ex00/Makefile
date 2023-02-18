@@ -1,6 +1,6 @@
 NAME	=	easyfind
 
-CC		=	c++
+CC		=	g++
 INCLUDES	= ./
 FLAGS	=	 -Wall -Wextra -Werror -std=c++98 -I $(INCLUDES)
 

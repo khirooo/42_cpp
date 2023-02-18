@@ -22,7 +22,6 @@ int main()
     mstack.push(737);
     mstack.push(0);
 
-	secondStack.swap(mstack);
     MutantStack<int>::iterator it = secondStack.begin();
     MutantStack<int>::iterator ite = secondStack.end();
 

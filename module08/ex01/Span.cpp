@@ -72,8 +72,8 @@ int	Span::longestSpan(void) const
 {
 	if (_spans.size() < 2)
 		throw Span::NoSpanFoundException();
-	std::vector<const int>::iterator	min = std::min_element(_spans.begin(), _spans.end());
-	std::vector<const int>::iterator	max = std::max_element(_spans.begin(), _spans.end());
+	std::vector<int>::const_iterator	min = std::min_element(_spans.begin(), _spans.end());
+	std::vector<int>::const_iterator	max = std::max_element(_spans.begin(), _spans.end());
 	return std::abs(*max - *min);
 }
 

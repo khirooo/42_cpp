@@ -1,7 +1,7 @@
 NAME	=	span
 
-CC		=	c++
-INCLUDES	=	./
+CC		=	g++
+INCLUDES =	./
 FLAGS	=	 -Wall -Wextra -Werror -std=c++98 -I $(INCLUDES)
 
 HEADER	=	Span.hpp
