@@ -16,7 +16,7 @@ _type(WrongAnimal.getType())
 
 WrongAnimal&	WrongAnimal::operator=(WrongAnimal& WrongAnimal)
 {
-	std::cout << "WrongAnimal copy assign constructor called." << std::endl; 
+	std::cout << "WrongAnimal copy assign operator called." << std::endl; 
 	_type = WrongAnimal.getType();
 	return (*this);
 }

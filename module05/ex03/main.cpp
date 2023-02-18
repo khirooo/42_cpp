@@ -8,7 +8,7 @@ int	main(void)
 	{
 		Intern* newbie = new Intern();
 	
-		AForm* form = newbie->makeForm("shrubbery creation", "froma_name");
+		AForm* form = newbie->makeForm("shrubbery creation", "target");
 		if (form)
 		{
 			std::cout << *form << std::endl;

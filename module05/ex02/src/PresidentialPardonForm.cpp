@@ -29,7 +29,7 @@ PresidentialPardonForm::~PresidentialPardonForm()
 	std::cout << "PresidentialForm destructor called" << std::endl;
 }
 
-std::string	PresidentialPardonForm::getTarget()
+std::string	PresidentialPardonForm::getTarget() const
 {
 	return _target;
 }

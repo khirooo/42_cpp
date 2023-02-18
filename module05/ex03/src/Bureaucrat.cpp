@@ -33,7 +33,7 @@ Bureaucrat::~Bureaucrat()
 
 Bureaucrat&	Bureaucrat::operator=(Bureaucrat& copy)
 {
-	std::cout << "Bureaucrat copy assign constructor called." << std::endl;
+	std::cout << "Bureaucrat copy assign operator called." << std::endl;
 	unsigned int grade = copy.getGrade();
 	if (grade > 150)
 		throw GradeTooLowException();
@@ -43,7 +43,7 @@ Bureaucrat&	Bureaucrat::operator=(Bureaucrat& copy)
 	return (*this);
 }
 
-const std::string	Bureaucrat::getName(void)
+const std::string	Bureaucrat::getName(void) const
 {
 	return _name;
 }
@@ -73,14 +73,33 @@ std::ostream&	operator<<(std::ostream& stream, Bureaucrat& b)
 	return (stream);
 }
 
+void	Bureaucrat::signForm(AForm& form) const
+{
+	if (_grade <= form.getSignGrade())
+		form.beSigned(*this);
+	else
+		std::cout << _name << " could not sign '" << form.getName() << "' because his grade is too low (" << _grade << ")." << std::endl;
+}
+
 void	Bureaucrat::executeFrom(AForm const & form) const
 {
 	try
 	{
 		form.execute(*this);
+		std::cout << _name << " executed "<< form.getName() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
 	}
+}
+
+const char* Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return "Grade too High";
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return "Grade too low";
 }

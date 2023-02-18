@@ -9,21 +9,21 @@ _type("animal")
 
 Animal::Animal(Animal& animal)
 :
-_type(animal.getType())
+_type(animal._type)
 {
 	std::cout << "Animal copy constructor called." << std::endl; 
 }
 
 Animal&	Animal::operator=(Animal& animal)
 {
-	std::cout << "Animal copy assign constructor called." << std::endl; 
-	_type = animal.getType();
+	std::cout << "Animal copy assign operator called." << std::endl; 
+	_type = animal._type;
 	return (*this);
 }
 
 Animal::~Animal()
 {
-	std::cout << "Default animal Destructor called." << std::endl; 
+	std::cout << "Animal Destructor called." << std::endl; 
 }
 
 void	Animal::setType(std::string type)

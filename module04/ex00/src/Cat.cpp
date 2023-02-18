@@ -1,6 +1,6 @@
 #include "Cat.hpp"
 
-Cat::Cat()
+Cat::Cat() //Animal() is being implicitly called ;)
 {
 	_type = "Cat";
 	std::cout << "Cat constructor called." << std::endl;
@@ -15,7 +15,7 @@ Animal(cat)
 
 Cat&	Cat::operator=(Cat& cat)
 {
-	std::cout << "Cat copy assign constructor called." << std::endl; 
+	std::cout << "Cat copy assign operator called." << std::endl; 
 	Animal::operator=(cat);
 	return (cat);
 }

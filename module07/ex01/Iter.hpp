@@ -4,9 +4,9 @@
 #include<iostream>
 
 template <typename T>
-void	iter(T* ptr, unsigned int length, void (*f)(T& t))
+void	iter(T* ptr, size_t length, void (*f)(T&))
 {
-	for(int i = 0; i < length; i++)
+	for(size_t i = 0; i < length; i++)
 		f(*(ptr + i));
 }
 

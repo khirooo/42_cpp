@@ -29,7 +29,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 	std::cout << "ShrubberyForm destructor called" << std::endl;
 }
 
-std::string	ShrubberyCreationForm::getTarget()
+std::string	ShrubberyCreationForm::getTarget() const
 {
 	return _target;
 }
@@ -42,6 +42,7 @@ void	ShrubberyCreationForm::action(void) const
 		std::cout << "Error: failed to create " << _target + "_shrubbery" << std::endl;
 		return ;
 	}
+	//should check for every writing put it's not the point of the exercise
 	file << "               ,@@@@@@@," << std::endl;
 	file << "       ,,,.   ,@@@@@@/@@,  .oo8888o." << std::endl;
 	file << "    ,&\\%\\%&%&&%,@@@@@/@@@@@@,8888\\88/8o" << std::endl;

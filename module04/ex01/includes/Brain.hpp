@@ -9,6 +9,7 @@ class Brain
 private:
 
 	std::string	_ideas[100];
+
 public:
 
 	Brain();
@@ -16,10 +17,8 @@ public:
 	Brain& operator=(Brain& brain);
 	~Brain();
 
-	std::string*	getIdeas(void);
-	std::string		getIdea(int index);
-
-	void			setIdea(int index, std::string idea);
+	std::string		getIdea(unsigned int index) const;
+	void			setIdea(unsigned int index, std::string idea);
 };
 
 #endif

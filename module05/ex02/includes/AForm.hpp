@@ -1,11 +1,11 @@
 #ifndef AFORM_HPP
 #define AFORM_HPP
 
-#include <Bureaucrat.hpp>
 #include <iostream>
 #include <ostream>
 #include <string>
 #include <exception>
+#include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
@@ -26,47 +26,33 @@ public:
 	virtual ~AForm();
 
 	const std::string	getName(void) const;
-	bool	getStat(void);
-	const unsigned int	getSignGrade(void);
-	const unsigned int	getExecGrade(void);
-	void	beSigned(Bureaucrat& b);
+	bool	getStat(void) const;
+	unsigned int	getSignGrade(void) const;
+	unsigned int	getExecGrade(void) const;
+	void	beSigned(Bureaucrat const & b);
 	virtual	void	action(void) const = 0;
 	void	execute(Bureaucrat const & executor) const;
 
 	class	GradeTooHighException: public std::exception
 	{
 		public:
-
-		const char* what() const throw()
-		{
-			return "Grade too high.";
-		}
+		const char* what() const throw();
 	};
 
 	class	GradeTooLowException: public std::exception
 	{
 		public:
-
-		const char* what() const throw()
-		{
-			return "Grade too low.";
-		}
+		const char* what() const throw();
 	};
 
 	class	FormNotSigned: public std::exception
 	{
-		const char* what() const throw()
-		{
-			return "This need to be signed!";
-		}
+		const char* what() const throw();
 	};
 
 	class	GradeTooLowToExecute: public std::exception
 	{
-		const char* what() const throw()
-		{
-			return "Bureaucrat grade is to low to execute this form.";
-		}
+		const char* what() const throw();
 	};
 };
 

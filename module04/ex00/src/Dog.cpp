@@ -15,7 +15,7 @@ Animal(Dog)
 
 Dog&	Dog::operator=(Dog& Dog)
 {
-	std::cout << "Dog copy assign constructor called." << std::endl; 
+	std::cout << "Dog copy assign operator called." << std::endl; 
 	Animal::operator=(Dog);
 	return (Dog);
 }

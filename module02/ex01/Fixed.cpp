@@ -14,7 +14,7 @@ Fixed::Fixed(const int i)
 	_value = i << _bPoint;
 }
 
-Fixed::Fixed(const float i) //try without rounding
+Fixed::Fixed(const float i)
 {
 	std::cout << "Float constructor called" << std::endl;
 	float	fvalue = i *  (1 << _bPoint);
@@ -30,7 +30,7 @@ Fixed::Fixed(const Fixed & num)
 Fixed& Fixed::operator= (const Fixed &num)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
-	_value = num._value;
+	_value = num.getRawBits();
 	return *this;
 }
 
@@ -41,7 +41,7 @@ Fixed::~Fixed()
 
 int	Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits function called" << std::endl;
+	//std::cout << "getRawBits function called" << std::endl;
 	return (_value);
 }
 
@@ -55,8 +55,7 @@ float	Fixed::toFloat(void) const
 {
 	float	f;
 
-	f = float(_value & (int)(pow(2, _bPoint) - 1)) / (1 << _bPoint);
-	f += float(_value >> _bPoint);
+	f = float(_value) / (1 << _bPoint);
 	return(f);
 }
 

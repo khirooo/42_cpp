@@ -2,8 +2,9 @@
 #include <iostream>
 
 Zombie::Zombie()
+:
+_name("")
 {
-	_name = "";
 }
 
 Zombie::Zombie(std::string name)

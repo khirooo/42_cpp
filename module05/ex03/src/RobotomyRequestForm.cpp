@@ -19,7 +19,7 @@ AForm(copy)
 
 RobotomyRequestForm&	RobotomyRequestForm::operator=(RobotomyRequestForm& copy)
 {
-	std::cout << "RobotForm copy assign constructor called" << std::endl;
+	std::cout << "RobotForm copy assign operator called" << std::endl;
 	AForm::operator=(copy);
 	_target = copy.getTarget();
 	return (*this);
@@ -30,7 +30,7 @@ RobotomyRequestForm::~RobotomyRequestForm()
 	std::cout << "RobotForm destructor called" << std::endl;
 }
 
-std::string	RobotomyRequestForm::getTarget()
+std::string	RobotomyRequestForm::getTarget()  const
 {
 	return _target;
 }
@@ -42,4 +42,4 @@ void	RobotomyRequestForm::action(void) const
 		std::cout << _target << " has been robotomized successfully" << std::endl;
 	else
 		std::cout << "robotomizing " << _target << " has failed" << std::endl;
-}	
+}

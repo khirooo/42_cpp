@@ -1,8 +1,8 @@
-NAME	=	serialization
+NAME	=	temp
 
-CC		=	g++
+CC		=	c++
 INCLUDES	=	./
-FLAGS	=	 -std=c++98 -I $(INCLUDES)
+FLAGS	=	 -Wall -Wextra -Werror -std=c++98 -I $(INCLUDES)
 
 SRCDIR	=	./
 SRCFILES = 	

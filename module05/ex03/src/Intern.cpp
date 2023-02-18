@@ -13,8 +13,8 @@ Intern::Intern(Intern& copy)
 
 Intern&	Intern::operator=(Intern& copy)
 {
-	*this = copy;
-	std::cout << "Intern copy assign constructor called." << std::endl;
+	(void)copy;
+	std::cout << "Intern copy assign operator called." << std::endl;
 	return *this;
 }
 

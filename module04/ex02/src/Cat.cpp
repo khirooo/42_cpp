@@ -17,7 +17,7 @@ Animal(cat)
 
 Cat&	Cat::operator=(Cat& cat)
 {
-	std::cout << "Cat copy assign constructor called." << std::endl; 
+	std::cout << "Cat copy assign operator called." << std::endl; 
 	Animal::operator=(cat);
 	_brain = new Brain(*(cat.getBrain()));
 	return (cat);
@@ -34,7 +34,7 @@ void	Cat::makeSound(void) const
 	std::cout << "Meow" << std::endl;
 }
 
-Brain*	Cat::getBrain(void)
+Brain*	Cat::getBrain(void) const
 {
 	return _brain;
 }

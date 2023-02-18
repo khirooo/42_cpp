@@ -1,8 +1,8 @@
 NAME	=	animals
 
-CC		=	g++
+CC		=	c++
 INCLUDES	=	includes
-FLAGS	=	 -std=c++98 -I $(INCLUDES)
+FLAGS	=	-Wall -Wextra -Werror -std=c++98 -I $(INCLUDES)
 
 SRCDIR	=	src/
 SRCFILES = 	Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp

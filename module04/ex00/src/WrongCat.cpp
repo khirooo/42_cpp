@@ -15,7 +15,7 @@ WrongAnimal(WrongCat)
 
 WrongCat&	WrongCat::operator=(WrongCat& WrongCat)
 {
-	std::cout << "WrongCat copy assign constructor called." << std::endl; 
+	std::cout << "WrongCat copy assign operator called." << std::endl; 
 	WrongAnimal::operator=(WrongCat);
 	return (WrongCat);
 }

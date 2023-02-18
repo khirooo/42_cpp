@@ -2,7 +2,7 @@ NAME	=	bureaucrat
 
 CC		=	g++
 INCLUDES	=	includes
-FLAGS	=	 -std=c++98 -I $(INCLUDES)
+FLAGS	=	-Wall -Werror -Wextra -std=c++98 -std=c++98 -I $(INCLUDES)
 
 SRCDIR	=	src/
 SRCFILES = 	PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp AForm.cpp Bureaucrat.cpp

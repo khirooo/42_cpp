@@ -18,7 +18,7 @@ AForm(copy)
 
 PresidentialPardonForm&	PresidentialPardonForm::operator=(PresidentialPardonForm& copy)
 {
-	std::cout << "PresidentialForm copy assign constructor called" << std::endl;
+	std::cout << "PresidentialForm copy assign operator called" << std::endl;
 	AForm::operator=(copy);
 	_target = copy.getTarget();
 	return (*this);
@@ -29,7 +29,7 @@ PresidentialPardonForm::~PresidentialPardonForm()
 	std::cout << "PresidentialForm destructor called" << std::endl;
 }
 
-std::string	PresidentialPardonForm::getTarget()
+std::string	PresidentialPardonForm::getTarget() const
 {
 	return _target;
 }

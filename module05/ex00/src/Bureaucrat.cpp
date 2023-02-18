@@ -33,7 +33,7 @@ Bureaucrat::~Bureaucrat()
 
 Bureaucrat&	Bureaucrat::operator=(Bureaucrat& copy)
 {
-	std::cout << "Bureaucrat copy assign constructor called." << std::endl;
+	std::cout << "Bureaucrat copy assign operator called." << std::endl;
 	unsigned int grade = copy.getGrade();
 	if (grade > 150)
 		throw GradeTooLowException();
@@ -43,12 +43,12 @@ Bureaucrat&	Bureaucrat::operator=(Bureaucrat& copy)
 	return (*this);
 }
 
-const std::string	Bureaucrat::getName(void)
+const std::string	Bureaucrat::getName(void) const
 {
 	return _name;
 }
 
-unsigned int		Bureaucrat::getGrade(void)
+unsigned int		Bureaucrat::getGrade(void) const
 {
 	return _grade;
 }
@@ -72,3 +72,14 @@ std::ostream&	operator<<(std::ostream& stream, Bureaucrat& b)
 	stream << b.getName() << ", bureaucrat grade " << b.getGrade() << ".";
 	return (stream);
 }
+
+const char* Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return "Grade too High";
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return "Grade too low";
+}
+

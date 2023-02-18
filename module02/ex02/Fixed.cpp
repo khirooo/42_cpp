@@ -55,8 +55,8 @@ float	Fixed::toFloat(void) const
 {
 	float	f;
 
-	f = float(_value & (int)(pow(2, _bPoint) - 1)) / (1 << _bPoint);
-	f += float(_value >> _bPoint);
+	f = float(_value) / (1 << _bPoint);
+	// f += float(_value >> _bPoint);
 	return(f);
 }
 
@@ -109,7 +109,7 @@ bool	Fixed::operator== (const Fixed& num)
 }
 bool	Fixed::operator!= (const Fixed& num)
 {
-	if(_value != num._value)
+	if(this->_value != num._value)
 		return (true);
 	return (false);
 }
@@ -192,5 +192,6 @@ const Fixed&	Fixed::min(const Fixed& num1, const Fixed& num2)
 
 const Fixed&	Fixed::max(const Fixed& num1, const Fixed& num2)
 {
+	std::cout << "its mee" << std::endl;
 	return (num1.getRawBits() > num2.getRawBits() ? num1 : num2);
 }

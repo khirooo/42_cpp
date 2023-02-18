@@ -29,7 +29,6 @@ public:
 	bool	getStat(void);
 	unsigned int	getSignGrade(void);
 	unsigned int	getExecGrade(void);
-	void	beSigned(Bureaucrat const & b);
 
 
 	class	GradeTooHighException: public std::exception

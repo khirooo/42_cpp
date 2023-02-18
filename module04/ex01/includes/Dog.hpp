@@ -16,7 +16,7 @@ public:
 	~Dog();
 
 	void	makeSound(void) const;
-	Brain*	getBrain(void);
+	Brain*	getBrain(void) const;
 };
 
 #endif

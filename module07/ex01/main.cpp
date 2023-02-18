@@ -15,6 +15,5 @@ int main(void)
     std::string array3[5] = {"1", "2", "3", "4", "5"};
     iter(array3, 5, &print);
     std::cout << std::endl;
-	
     return 0;
 }

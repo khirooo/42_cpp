@@ -1,8 +1,8 @@
 NAME	=	zombie
 
-CC		=	g++
+CC		=	c++
 INCLUDES	=	includes
-FLAGS	=	-Wall -Wextra -Werror  -I $(INCLUDES)
+FLAGS	=	-Wall -Wextra -Werror -std=c++98 -I $(INCLUDES)
 
 SRCDIR	=	./
 SRCFILES = 	Zombie.cpp newZombie.cpp randomChump.cpp main.cpp

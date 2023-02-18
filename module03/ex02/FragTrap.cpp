@@ -19,8 +19,8 @@ ClapTrap(trap)
 
 FragTrap&	FragTrap::operator=(FragTrap& trap)
 {
-	ClapTrap::operator=(trap);
 	std::cout << "FragTrap copy Assign constructor called." << std::endl;
+	ClapTrap::operator=(trap);
 	return (trap);
 }
 
@@ -31,5 +31,5 @@ FragTrap::~FragTrap()
 
 void	FragTrap::highFivesGuys(void)
 {
-	std::cout << "FragTrap " << getName() << " is requesting some high fives." << std::endl;
+	std::cout << "FragTrap " << getName() << " is requesting a couple of high fives." << std::endl;
 }

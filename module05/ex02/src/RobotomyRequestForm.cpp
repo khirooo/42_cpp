@@ -30,7 +30,7 @@ RobotomyRequestForm::~RobotomyRequestForm()
 	std::cout << "RobotForm destructor called" << std::endl;
 }
 
-std::string	RobotomyRequestForm::getTarget()
+std::string	RobotomyRequestForm::getTarget()  const
 {
 	return _target;
 }
@@ -42,4 +42,4 @@ void	RobotomyRequestForm::action(void) const
 		std::cout << _target << " has been robotomized successfully" << std::endl;
 	else
 		std::cout << "robotomizing " << _target << " has failed" << std::endl;
-}	
+}

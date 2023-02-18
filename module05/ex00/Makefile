@@ -1,8 +1,8 @@
 NAME	=	bureaucrat
 
-CC		=	g++
+CC		=	c++
 INCLUDES	=	includes
-FLAGS	=	 -std=c++98 -I $(INCLUDES)
+FLAGS	=	-Wall -Werror -Wextra -std=c++98 -I $(INCLUDES)
 
 SRCDIR	=	src/
 SRCFILES = 	Bureaucrat.cpp

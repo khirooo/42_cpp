@@ -17,7 +17,7 @@ _signed(stat),
 _signGrade(signGrade),
 _execGrade(execGrade)
 {
-	std::cout << "AForm constructor(name, state, signgrade, execute grade) called." << std::endl;
+	std::cout << "AForm constructor called." << std::endl;
 	if (signGrade < 1 || execGrade < 1)
 		throw GradeTooHighException();
 	if (signGrade > 150 || execGrade > 150)
@@ -66,17 +66,17 @@ const std::string	AForm::getName(void) const
 	return _name;
 }
 
-bool	AForm::getStat(void)
+bool	AForm::getStat(void) const
 {
 	return _signed;
 }
 
-const unsigned int	AForm::getSignGrade(void)
+unsigned int	AForm::getSignGrade(void) const
 {
 	return _signGrade;
 }
 
-const unsigned int 	AForm::getExecGrade(void)
+unsigned int 	AForm::getExecGrade(void) const
 {
 	return _execGrade;
 }
@@ -87,7 +87,7 @@ std::ostream&	operator<<(std::ostream& stream, AForm& form)
 	return stream;
 }
 
-void	AForm::beSigned(Bureaucrat& b)
+void	AForm::beSigned(Bureaucrat const & b)
 {
 	unsigned int grade = b.getGrade();
 	if (grade < 1)
@@ -100,7 +100,7 @@ void	AForm::beSigned(Bureaucrat& b)
 		std::cout << b.getName() << "  signed " << _name << "." << std::endl;
 	}
 	else
-		std::cout << b.getName() << " couldn't sign " << _name << " because his grade is to low (grade = " << b.getGrade() << ")" << std::endl;
+		throw GradeTooLowException();
 }
 
 void	AForm::execute(Bureaucrat const & executor) const
@@ -110,4 +110,24 @@ void	AForm::execute(Bureaucrat const & executor) const
 	if (executor.getGrade() > _execGrade)
 		throw GradeTooLowToExecute();
 	action();
+}
+
+const char* AForm::GradeTooHighException::what() const throw()
+{
+	return "Grade too high";
+}
+
+const char* AForm::GradeTooLowException::what() const throw()
+{
+	return "Grade too low";
+}
+
+const char* AForm::FormNotSigned::what() const throw()
+{
+	return "This need to be signed!";
+}
+
+const char* AForm::GradeTooLowToExecute::what() const throw()
+{
+	return "Bureaucrat grade is to low to execute this form.";
 }

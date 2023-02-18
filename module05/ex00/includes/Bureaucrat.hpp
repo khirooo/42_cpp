@@ -9,17 +9,17 @@
 class Bureaucrat
 {
 private:
-	/* data */
 	const std::string	_name;
 	unsigned int		_grade;
+
 public:
-	Bureaucrat(std::string name, unsigned int grade);
+	Bureaucrat(std::string name = "", unsigned int grade = 150);
 	Bureaucrat(Bureaucrat& copy);
 	Bureaucrat&	operator=(Bureaucrat& copy);
 	~Bureaucrat();
 
-	const std::string	getName(void);
-	unsigned int		getGrade(void);
+	const std::string	getName(void) const;
+	unsigned int		getGrade(void) const;
 
 	void	levelUp(void);
 	void	levelDown(void);
@@ -27,21 +27,13 @@ public:
 	class	GradeTooHighException: public std::exception
 	{
 		public:
-
-		const char* what() const throw()
-		{
-			return "Grade too high";
-		}
+		const char* what() const throw();
 	};
 
 	class	GradeTooLowException: public std::exception
 	{
 		public:
-
-		const char* what() const throw()
-		{
-			return "Grade too low";
-		}
+		const char* what() const throw();
 	};
 };
 
