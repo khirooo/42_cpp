@@ -1,12 +1,12 @@
-NAME	=	span
+NAME	=	stack
 
 CC		=	c++
 INCLUDES	=	./
 FLAGS	=	 -Wall -Wextra -Werror -std=c++98 -I $(INCLUDES)
 
-HEADER	=	Span.hpp
+HEADER	=	MutantStack.hpp
 SRCDIR	=	./
-SRCFILES = 	Span.cpp
+SRCFILES =	
 SRCS	=	$(addprefix $(SRCDIR), $(SRCFILES))
 SRCS	+= main.cpp
 

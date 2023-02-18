@@ -1,9 +1,10 @@
 NAME	=	easyfind
 
 CC		=	c++
-INCLUDES	=	./
+INCLUDES	= ./
 FLAGS	=	 -Wall -Wextra -Werror -std=c++98 -I $(INCLUDES)
 
+HEADER	=	easyfind.hpp
 SRCDIR	=	./
 SRCFILES = 	
 SRCS	=	$(addprefix $(SRCDIR), $(SRCFILES))
@@ -13,7 +14,7 @@ OBJS	=	$(SRCS:%.cpp=%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(HEADER)
 		@echo "Compiling $@"
 		@$(CC) $(FLAGS) $(OBJS) -o $@
 
