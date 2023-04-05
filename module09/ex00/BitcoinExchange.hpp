@@ -8,12 +8,6 @@
 #include <ctime>
 #include <exception>
 
-
-class CostumExp: public std::exception
-{
-	virtual const char* what() const throw();
-};
-
 class BitcoinExchange
 {
 private:
@@ -28,12 +22,8 @@ public:
 	{
 		const char* what() const throw();
 	};
-	class CouldNotOpenFile : public CostumExp
+	class CouldNotOpenFile : public std::exception
 	{
-		private:
-			std::string _fname;
-		public:
-			CouldNotOpenFile(const std::string& name);
 		virtual const char* what() const throw();
 	};
 	class CorruptedDataFile : public std::exception

@@ -5,13 +5,14 @@ static bool isLeap(int year)
 	return (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0));
 }
 
+static double 
 BitcoinExchange::BitcoinExchange(std::string db_file)
 {
 	if (db_file.empty() || db_file.size() < 5 || !(db_file.substr(db_file.size() - 4) == ".csv"))
 		throw WrongFileFormatExp();
 	std::ifstream my_file(db_file);
 	if (!my_file.is_open())
-		throw CouldNotOpenFile(db_file);
+		throw CouldNotOpenFile();
 	std::string	line;
 	double last_value = -1;
 	while (!my_file.eof())
@@ -53,7 +54,42 @@ void	BitcoinExchange::exchange(std::string input)
 {
 	std::ifstream my_file(input);
 	if (!my_file.is_open())
-		throw CouldNotOpenFile(input);
+		throw CouldNotOpenFile();
+	std::string line;
+	while (!my_file.eof())
+	{
+		std::getline(my_file, line);
+		if (line.empty() || line == "date | value")
+			continue;
+		std::istringstream	ss(line);
+		std::tm	date = {};
+		int		nb;
+		ss >> std::get_time(&date, "%y-%m-%d");
+		if (ss.fail())
+		{
+			std::cout << "Error: bad date => " << line << std::endl;
+			continue;
+		}
+		char delim;
+		ss >> delim;
+		if (ss.fail() || delim != '|')
+		{
+			std::cout << "Error: bad input => " << line << std::endl;
+			continue;
+		}
+		ss >> nb;
+		if (ss.fail())
+		{
+			std::cout << "Error: number to large" << std::endl;
+			continue;
+		}
+		if (nb < 0)
+		{
+			std::cout << "Error: number negative" << std::endl;
+			continue;
+		}
+
+	}
 }
 
 void	BitcoinExchange::print_db(void) const
@@ -70,25 +106,13 @@ const char* BitcoinExchange::WrongFileFormatExp::what() const throw()
 {
 	return "Wrong file format for data base *.csv";
 }
-BitcoinExchange::CouldNotOpenFile::CouldNotOpenFile(const std::string& file)
-: _fname(file)
-{
-	std::cout <<"file is " << file << std::endl;
-	std::cout <<"_fname is " << _fname << std::endl;
-}
+
 const char* BitcoinExchange::CouldNotOpenFile::what() const throw()
 {
-	//_file = std::string("Could not open file ") + _file + std::string(" (check file location)");
-	//return _file.c_str();
-	return "_fname.c_str";
+	return "Could not open file (check file location)";
 }
 
 const char* BitcoinExchange::CorruptedDataFile::what() const throw()
 {
 	return "Data base file corrupted";
-}
-
-const char* CostumExp::what() const throw()
-{
-	return "Costum Exception";
 }
