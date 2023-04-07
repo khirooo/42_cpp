@@ -13,11 +13,14 @@ class BitcoinExchange
 private:
 	std::map<std::time_t, double>	_db;
 public:
-	BitcoinExchange(std::string	db_file);
+	BitcoinExchange();
+	BitcoinExchange(const BitcoinExchange& copy);
+	BitcoinExchange& operator=(const BitcoinExchange& copy);
 	~BitcoinExchange();
 
 	void	exchange(std::string input);
 	void	print_db(void) const;
+	double	get_price(std::tm& date);
 	class WrongFileFormatExp : public std::exception
 	{
 		const char* what() const throw();

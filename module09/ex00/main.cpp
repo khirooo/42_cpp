@@ -18,8 +18,9 @@ int main(int argc, char** argv)
 	}
 	try
 	{
-		BitcoinExchange bc("data.csv");
-		bc.print_db();
+		BitcoinExchange bc;
+	//	bc.print_db();
+		bc.exchange(input);
 	}
 	catch(const std::exception& e)
 	{

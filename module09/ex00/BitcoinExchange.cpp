@@ -1,13 +1,14 @@
 #include "BitcoinExchange.hpp"
+#include <limits.h>
 
 static bool isLeap(int year)
 {
 	return (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0));
 }
 
-static double 
-BitcoinExchange::BitcoinExchange(std::string db_file)
+BitcoinExchange::BitcoinExchange()
 {
+	std::string db_file = "data.csv";
 	if (db_file.empty() || db_file.size() < 5 || !(db_file.substr(db_file.size() - 4) == ".csv"))
 		throw WrongFileFormatExp();
 	std::ifstream my_file(db_file);
@@ -36,7 +37,6 @@ BitcoinExchange::BitcoinExchange(std::string db_file)
 				throw CorruptedDataFile();
 		}
 		char delim;
-		std::cout << ss.str() << std::endl;
 		ss >> delim >> value;
 		if (ss.fail() || delim != ',' || value < 0)
 			throw CorruptedDataFile();
@@ -44,6 +44,17 @@ BitcoinExchange::BitcoinExchange(std::string db_file)
 		_db.insert(std::make_pair(std::mktime(&date), value));
 	}
 	my_file.close();
+}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& copy)
+{
+	_db = copy._db;
+}
+
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& copy)
+{
+	_db = copy._db;
+	return *this;
 }
 
 BitcoinExchange::~BitcoinExchange()
@@ -63,12 +74,25 @@ void	BitcoinExchange::exchange(std::string input)
 			continue;
 		std::istringstream	ss(line);
 		std::tm	date = {};
-		int		nb;
+		double	nb;
 		ss >> std::get_time(&date, "%y-%m-%d");
 		if (ss.fail())
 		{
 			std::cout << "Error: bad date => " << line << std::endl;
 			continue;
+		}
+		if (date.tm_mon == 1)
+		{
+			if (date.tm_mday > 29)
+			{
+				std::cout << "Error: bad date => " << line << std::endl;
+				continue;
+			}
+			if (!isLeap(date.tm_year) && date.tm_mday > 28)
+			{
+				std::cout << "Error: bad date => " << line << std::endl;
+				continue;
+			}	
 		}
 		char delim;
 		ss >> delim;
@@ -78,18 +102,40 @@ void	BitcoinExchange::exchange(std::string input)
 			continue;
 		}
 		ss >> nb;
-		if (ss.fail())
+		if (ss.fail() || nb > INT_MAX)
 		{
-			std::cout << "Error: number to large" << std::endl;
+			std::cout << "Error: number to large." << std::endl;
 			continue;
 		}
 		if (nb < 0)
 		{
-			std::cout << "Error: number negative" << std::endl;
+			std::cout << "Error: not a positive number." << std::endl;
 			continue;
 		}
-
+		double	price = get_price(date);
+		if (price < 0)
+		{
+			std::cout << "Error: no records dating to this date => " << line << std::endl;
+			continue;
+		}
+		std::cout << date.tm_year + 1900 << "-" << date.tm_mon + 1 << "-" << date.tm_mday << " ==> " << nb << " = " << price * nb << std::endl;
 	}
+	my_file.close();
+}
+
+double	BitcoinExchange::get_price(std::tm& date)
+{
+	std::time_t	time = std::mktime(&date);
+	std::map<std::time_t, double>::const_iterator	it;
+	for (it = _db.begin(); it != _db.end(); it++)
+	{
+		if (it->first > time)
+			break;
+	}
+	if (it == _db.begin())
+		return -1.0;
+	it--;
+	return it->second;
 }
 
 void	BitcoinExchange::print_db(void) const
