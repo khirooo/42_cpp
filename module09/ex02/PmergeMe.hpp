@@ -7,14 +7,14 @@
 class	PmergeMe
 {
 	private:
-	std::vector<int>			sequence_;
-	
-	public:
-	PmergeMe(const std::vector<int>& seq);
+	PmergeMe();
+	PmergeMe(PmergeMe const & copy);
+	PmergeMe&	operator=(const PmergeMe& copy);
 	~PmergeMe();
 
-	void    sort_vec(std::vector<int>& vec, int p, int r);
-	void    sort_q(std::deque<int>& A, int p, int r);
+	public:
+	static	void    sort_vec(std::vector<int>& vec, int p, int r);
+	static	void    sort_q(std::deque<int>& A, int p, int r);
 
 };	
 
@@ -31,6 +31,15 @@ bool	sorted(T const & container)
 	if (it + 1 == container.end())
 		return true;
 	return false;
+}
+
+template<typename T>
+void	print(T const & vec)
+{
+	typename T::const_iterator it;
+	for (it = vec.begin(); it != vec.end(); ++it)
+		std::cout << *it << " ";
+	std::cout << std::endl;
 }
 
 #endif

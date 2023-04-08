@@ -37,7 +37,6 @@ void	RPN::solve(void) const
 		ss >> op;
 		if (ss.fail())
 			break;
-		count++;
 		if (!check_input(op))
 			throw InvalidInput();
 		if (std::isdigit(op))
@@ -59,6 +58,7 @@ void	RPN::solve(void) const
 			else if (op == '/')
 				my_stack.push(op2 / op1);
 		}
+		count++;
 	}
 	if (my_stack.size() != 1 || count < 3)
 		throw InvalidInput();

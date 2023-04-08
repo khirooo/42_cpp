@@ -1,9 +1,18 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(const std::vector<int>& seq)
-:
-sequence_(seq)
+PmergeMe::PmergeMe()
 {
+}
+
+PmergeMe::PmergeMe(PmergeMe const & copy)
+{
+	(void)copy;
+}
+
+PmergeMe&	PmergeMe::operator=(PmergeMe const & copy)
+{
+	(void)copy;
+	return (*this);
 }
 
 PmergeMe::~PmergeMe()

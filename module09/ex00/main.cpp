@@ -3,8 +3,6 @@
 
 int main(int argc, char** argv)
 {
-	(void)argc;
-	(void)argv;
 	if (argc != 2)
 	{
 		std::cerr << "Usage: btc <inputfile.txt>" << std::endl;
