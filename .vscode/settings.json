@@ -61,6 +61,15 @@
 		"fstream": "cpp",
 		"stack": "cpp",
 		"filesystem": "cpp",
-		"vector": "cpp"
+		"vector": "cpp",
+		"array": "cpp",
+		"*.tcc": "cpp",
+		"clocale": "cpp",
+		"cmath": "cpp",
+		"compare": "cpp",
+		"concepts": "cpp",
+		"list": "cpp",
+		"unordered_map": "cpp",
+		"numbers": "cpp"
 	}
 }
